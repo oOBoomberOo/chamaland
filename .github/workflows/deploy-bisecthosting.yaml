@@ -1,0 +1,39 @@
+name: Sync File to BisectHosting
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+
+      - name: Install Forge Server
+        run: |
+          java -jar installer.jar --installServer server
+      - name: Copy Mods
+        run: |
+          mkdir -p config
+          mkdir -p defaultconfigs
+          mkdir -p mods
+          cp -r defaultconfigs ./server/defaultconfigs
+          cp -r config ./server/config
+          cp -r mods ./server/mods
+      - name: Rename server executable to a standard format
+        run: |
+          mv ./server/forge*.jar ./server/custom.jar
+      - uses: sebastianpopp/ftp-action@v2.0.0
+        with:
+          localDir: server
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          forceSsl: true
