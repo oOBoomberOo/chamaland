@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
+          mkdir -p config
+          mkdir -p defaultconfigs
+          mkdir -p mods
           mkdir -p multimc/.minecraft
           cp -r instance.cfg multimc
           cp -r mmc-pack.json multimc
