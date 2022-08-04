@@ -21,7 +21,6 @@ jobs:
           cp -r mods multimc/.minecraft
           cp -r defaultconfigs multimc/.minecraft
           cp -r config multimc/.minecraft
-          cp -r options.txt multimc/.minecraft
       - run: zip -r multimc.zip multimc
       - uses: actions/upload-artifact@v3
         with:
