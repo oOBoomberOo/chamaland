@@ -57,3 +57,4 @@ Chamaland is a lightly-modded minecraft server centered around creativity and fu
 - [Terralith](https://www.curseforge.com/minecraft/mc-mods/terralith)
 - [Tiny Gate](https://www.curseforge.com/minecraft/mc-mods/tiny-gates)
 - [Tiny Redstone](https://www.curseforge.com/minecraft/mc-mods/tiny-redstone)
+- [Villager Workers](https://www.curseforge.com/minecraft/mc-mods/workers)
