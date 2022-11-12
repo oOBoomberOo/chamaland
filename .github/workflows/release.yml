@@ -18,9 +18,11 @@ jobs:
           mkdir -p multimc/.minecraft
           cp -r instance.cfg multimc
           cp -r mmc-pack.json multimc
-          cp -r mods multimc/.minecraft
           cp -r defaultconfigs multimc/.minecraft
           cp -r config multimc/.minecraft
+          mkdir -p multimc/.minecraft/mods
+          cp mods/*.jar multimc/.minecraft/mods
+          cp mods/client/*.jar multimc/.minecraft/mods
       - run: zip -r multimc.zip multimc
       - uses: actions/upload-artifact@v3
         with:
@@ -45,7 +47,9 @@ jobs:
           mkdir -p mods
           cp -r defaultconfigs ./server/defaultconfigs
           cp -r config ./server/config
-          cp -r mods ./server/mods
+          mkdir -p ./server/mods/
+          cp mods/*.jar ./server/mods
+          cp mods/server/*.jar ./server/mods
       - name: Rename server executable to a standard format
         run: |
           mv ./server/libraries/net/minecraftforge/forge/*/forge*server.jar ./server/server.jar

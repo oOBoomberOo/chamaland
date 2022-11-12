@@ -26,7 +26,9 @@ jobs:
           mkdir -p mods
           cp -r defaultconfigs ./server/defaultconfigs
           cp -r config ./server/config
-          cp -r mods ./server/mods
+          mkdir -p ./server/mods/
+          cp mods/*.jar ./server/mods
+          cp mods/server/*.jar ./server/mods
       - name: Rename server executable to a standard format
         run: |
           mv ./server/libraries/net/minecraftforge/forge/*/forge*server.jar ./server/custom.jar
